@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>task15</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: limegreen;
+    }
+    input {
+      margin: 6px;
+      padding: 5px;
+      width: 250px;
+    }
+    button {
+      margin: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      background-color: darkblue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    h1 {
+      margin-top: 25px;
+      color: darkblue;
+    }
+    p {
+      font-weight: bold;
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+<h1>1. Concatenation of two Strings</h1>
+<input placeholder="First String" class="str1">
+<input placeholder="Second String" class="str2">
+<button class="btn1">Concatenate Strings</button>
+<p class="res1"></p>
+
+<h1>2. Concatenation of two Arrays</h1>
+<input placeholder="Array 1 (e.g. 1,2)" class="arr1">
+<input placeholder="Array 2 (e.g. 3,4)" class="arr2">
+<button class="btn2">Concatenate Arrays</button>
+<p class="res2"></p>
+
+<h1>3. Sorting of an Array</h1>
+<input placeholder="Enter numbers (e.g. 5,2,9,1)" class="sortArr">
+<button class="btn3">Sort Array</button>
+<p class="res3"></p>
+
+<h1>4. Remove First Element of an array</h1>
+<input placeholder="Enter array (e.g. 10,20,30)" class="remArr">
+<button class="btn4">Remove First</button>
+<p class="res4"></p>
+
+<script>
+  function concatStrings() {
+    let s1 = document.querySelector(".str1").value.trim();
+    let s2 = document.querySelector(".str2").value.trim();
+    document.querySelector(".res1").innerText = "Concatenated String: " + s1 + s2;
+  }
+
+  function concatArrays() {
+    let a1 = document.querySelector(".arr1").value.split(',').map(x => parseFloat(x.trim()));
+    let a2 = document.querySelector(".arr2").value.split(',').map(x => parseFloat(x.trim()));
+    let result = a1.concat(a2);
+    document.querySelector(".res2").innerText = "Concatenated Array: [" + result.join(', ') + "]";
+  }
+
+  function sortArray() {
+    let arr = document.querySelector(".sortArr").value.split(',').map(x => parseFloat(x.trim()));
+    arr.sort((a, b) => a - b);
+    document.querySelector(".res3").innerText = "Sorted Array: [" + arr.join(', ') + "]";
+  }
+
+  function removeFirst() {
+    let arr = document.querySelector(".remArr").value.split(',').map(x => parseFloat(x.trim()));
+    arr.shift();
+    document.querySelector(".res4").innerText = "After Removing First: [" + arr.join(', ') + "]";
+  }
+
+  window.onload = function() {
+    // Enter key listeners
+    document.querySelector(".str2").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") concatStrings();
+    });
+    document.querySelector(".arr2").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") concatArrays();
+    });
+    document.querySelector(".sortArr").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") sortArray();
+    });
+    document.querySelector(".remArr").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") removeFirst();
+    });
+
+    // Button click listeners
+    document.querySelector(".btn1").addEventListener("click", concatStrings);
+    document.querySelector(".btn2").addEventListener("click", concatArrays);
+    document.querySelector(".btn3").addEventListener("click", sortArray);
+    document.querySelector(".btn4").addEventListener("click", removeFirst);
+  };
+</script>
+
+</body>
+</html>
